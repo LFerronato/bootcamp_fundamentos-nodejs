@@ -6,7 +6,6 @@ interface Balance {
   total: number;
 }
 interface CreateDTO {
-  id: string;
   title: string;
   value: number;
   type: 'income' | 'outcome';
@@ -16,6 +15,7 @@ class TransactionsRepository {
   private transactions: Transaction[];
 
   constructor() {
+    // BANCO DE DADOS
     this.transactions = [];
   }
 
@@ -37,8 +37,8 @@ class TransactionsRepository {
     return { income, outcome, total: income - outcome };
   }
 
-  public create({ id, title, value, type }: CreateDTO): Transaction {
-    const newTransaction = { id, title, value, type };
+  public create({ title, value, type }: CreateDTO): Transaction {
+    const newTransaction = new Transaction({ title, value, type });
     this.transactions.push(newTransaction);
     return newTransaction;
   }
