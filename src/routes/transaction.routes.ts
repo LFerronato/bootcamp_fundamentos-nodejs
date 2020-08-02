@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-// import TransactionsRepository from '../repositories/TransactionsRepository';
+import TransactionsRepository from '../repositories/TransactionsRepository';
 // import CreateTransactionService from '../services/CreateTransactionService';
 
 const transactionRouter = Router();
 
-// const transactionsRepository = new TransactionsRepository();
+const transactionsRepository = new TransactionsRepository();
 
 transactionRouter.get('/', (request, response) => {
   try {
@@ -16,8 +16,9 @@ transactionRouter.get('/', (request, response) => {
 });
 
 transactionRouter.post('/', (request, response) => {
+  const { title, value, type } = req.body;
   try {
-    // TODO
+    transactionsRepository.create({});
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
